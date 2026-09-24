@@ -19,9 +19,12 @@ from app.patterns.regime.detector import MarketRegimeDetector, RegimeConfig
 from app.patterns.confluence.engine import calculate_confluence, ConfluenceConfig
 from app.patterns.backtest.engine import PatternBacktester, BacktestConfig
 from app.patterns.detectors.pivot import PivotDetector, PivotConfig
+from app.patterns.api.scanner_routes import router as scanner_router
 
 
 router = APIRouter(prefix="/api/patterns", tags=["patterns"])
+
+router.include_router(scanner_router)
 
 
 class DetectRequest(BaseModel):

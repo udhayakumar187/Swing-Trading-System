@@ -31,6 +31,15 @@ from app.patterns.models.validation import (
     DataValidationError,
 )
 
+from app.patterns.models.pattern_tracking import (
+    PatternType,
+    PatternOutcome,
+    TrackedPattern,
+    PatternForwardTracking,
+    PatternScanConfig,
+    PatternStatistics,
+)
+
 __all__ = [
     "PatternCategory",
     "PatternDirection",
@@ -56,4 +65,10 @@ __all__ = [
     "ensure_sufficient_candles",
     "get_live_candles",
     "DataValidationError",
+    "PatternType",
+    "PatternOutcome",
+    "TrackedPattern",
+    "PatternForwardTracking",
+    "PatternScanConfig",
+    "PatternStatistics",
 ]

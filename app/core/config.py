@@ -30,6 +30,17 @@ class Settings(BaseSettings):
     # Database
     DATABASE_URL: str = Field(default="sqlite:///./trading.db", description="Database URL")
 
+    # Supabase Configuration
+    SUPABASE_URL: str = Field(default="", description="Supabase project URL")
+    SUPABASE_KEY: str = Field(default="", description="Supabase anon/service role key")
+    SUPABASE_DB_URL: str = Field(default="", description="Supabase PostgreSQL connection string")
+
+    # Pattern Scanner Configuration
+    PATTERN_SCAN_SYMBOLS: str = Field(default="RELIANCE.NS,TCS.NS,HDFCBANK.NS,INFY.NS,ICICIBANK.NS", description="Comma-separated symbols to scan")
+    PATTERN_SCAN_TIMEFRAME: str = Field(default="1d", description="Timeframe for pattern scanning")
+    PATTERN_SCAN_LOOKBACK_DAYS: int = Field(default=200, description="Days of historical data to fetch")
+    PATTERN_FORWARD_DAYS: int = Field(default=20, description="Days to track forward for outcome validation")
+
     # Strategy Parameters
     SWING_LOW_LOOKBACK: int = Field(default=5, description="Number of candles for swing low detection")
     EVENT_EXCLUSION_WINDOW: int = Field(default=7, description="Days to exclude around corporate events")
@@ -44,6 +55,14 @@ class Settings(BaseSettings):
     @property
     def is_live(self) -> bool:
         return self.TRADING_MODE.upper() == "LIVE"
+
+    @property
+    def pattern_symbols(self) -> list[str]:
+        return [s.strip() for s in self.PATTERN_SCAN_SYMBOLS.split(",") if s.strip()]
+
+    @property
+    def has_supabase(self) -> bool:
+        return bool(self.SUPABASE_URL and self.SUPABASE_KEY)
 
 
 @lru_cache
