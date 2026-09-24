@@ -1,0 +1,62 @@
+from enum import Enum
+
+
+class PatternCategory(str, Enum):
+    CANDLESTICK = "CANDLESTICK"
+    CHART_PATTERN = "CHART_PATTERN"
+    HARMONIC = "HARMONIC"
+    MARKET_STRUCTURE = "MARKET_STRUCTURE"
+    INDICATOR_PATTERN = "INDICATOR_PATTERN"
+    WAVE = "WAVE"
+    VOLUME = "VOLUME"
+    VOLATILITY = "VOLATILITY"
+
+
+class PatternDirection(str, Enum):
+    BULLISH = "BULLISH"
+    BEARISH = "BEARISH"
+    NEUTRAL = "NEUTRAL"
+
+
+class PatternStatus(str, Enum):
+    FORMING = "FORMING"
+    CONFIRMED = "CONFIRMED"
+    INVALIDATED = "INVALIDATED"
+    COMPLETED = "COMPLETED"
+
+
+class Timeframe(str, Enum):
+    MIN_5 = "5m"
+    MIN_15 = "15m"
+    HOUR_1 = "1h"
+    HOUR_4 = "4h"
+    DAY_1 = "1D"
+    WEEK_1 = "1W"
+
+
+class MarketRegime(str, Enum):
+    BULL_TREND = "BULL_TREND"
+    BEAR_TREND = "BEAR_TREND"
+    RANGE = "RANGE"
+    HIGH_VOLATILITY = "HIGH_VOLATILITY"
+    LOW_VOLATILITY = "LOW_VOLATILITY"
+
+
+class PivotType(str, Enum):
+    HIGH = "HIGH"
+    LOW = "LOW"
+
+
+class DivergenceType(str, Enum):
+    REGULAR_BULLISH = "REGULAR_BULLISH"
+    REGULAR_BEARISH = "REGULAR_BEARISH"
+    HIDDEN_BULLISH = "HIDDEN_BULLISH"
+    HIDDEN_BEARISH = "HIDDEN_BEARISH"
+
+
+class WaveType(str, Enum):
+    IMPULSE = "IMPULSE"
+    CORRECTIVE = "CORRECTIVE"
+    ABC_CORRECTION = "ABC_CORRECTION"
+    ELLIOTT_IMPULSE = "ELLIOTT_IMPULSE"
+    ELLIOTT_CORRECTIVE = "ELLIOTT_CORRECTIVE"

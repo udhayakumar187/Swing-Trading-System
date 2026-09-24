@@ -1,0 +1,33 @@
+[Unit]
+Description=Swing Trading System
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=notify
+User=appuser
+Group=appuser
+WorkingDirectory=/opt/swing-trading
+Environment=PATH=/opt/swing-trading/venv/bin
+EnvironmentFile=/opt/swing-trading/.env
+ExecStart=/opt/swing-trading/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 2
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=30
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=swing-trading
+
+# Security
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/opt/swing-trading/logs /opt/swing-trading/data
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=multi-user.target
